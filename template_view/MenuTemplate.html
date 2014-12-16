@@ -8,7 +8,7 @@
                 <span class="fa-stack fa-lg m_arr">
                   <i class="fa fa-square fa-stack-2x"></i>
                   <i class="fa fa-language fa-stack-1x fa-inverse"></i>
-                </span> &nbsp; Index
+                </span> &nbsp; {{translation.indexMenu}}
         </ons-list-item>
 
         <ons-list-item
@@ -18,7 +18,7 @@
                 <span class="fa-stack fa-lg m_arr">
                   <i class="fa fa-square fa-stack-2x"></i>
                   <i class="fa fa-language fa-stack-1x fa-inverse"></i>
-                </span> &nbsp; View users
+                </span> &nbsp; {{translation.userMenu}}
         </ons-list-item>
 
         <ons-list-item
@@ -28,7 +28,7 @@
                 <span class="fa-stack fa-lg m_arr">
                   <i class="fa fa-square fa-stack-2x"></i>
                   <i class="fa fa-language fa-stack-1x fa-inverse"></i>
-                </span> &nbsp; View contacts
+                </span> &nbsp; {{translation.contactMenu}}
         </ons-list-item>
 
         <ons-list-item
@@ -38,14 +38,17 @@
                 <span class="fa-stack fa-lg m_arr">
                   <i class="fa fa-square fa-stack-2x"></i>
                   <i class="fa fa-language fa-stack-1x fa-inverse"></i>
-                </span> &nbsp; View articles
+                </span> &nbsp; {{translation.articleMenu}}
         </ons-list-item>
 
         <ons-list-item
                 modifier="chevron"
-                ng-click="ons.slidingMenu.setMainPage('template_view/_viewArticles.html', {closeMenu: true})">
+                ng-click="ons.slidingMenu.setMainPage('template_view/_viewLanguage.html', {closeMenu: true})">
 
-
+                <span class="fa-stack fa-lg m_arr">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-language fa-stack-1x fa-inverse"></i>
+                </span> &nbsp; {{translation.languageMenu}}
         </ons-list-item>
 
         <!--<ons-list-item ng-repeat="r in result"-->

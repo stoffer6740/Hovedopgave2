@@ -10,3 +10,21 @@ joomlaapp.directive('articleHeader', function(){
         templateUrl : 'template_directive/_dirHeader.html'
     }
 });
+
+joomlaapp.directive('appHeader', function(){
+    return {
+        restrict    : 'E',
+        replace     : 'true',
+        scope       : 'false',
+        templateUrl : 'template_directive/_appHeader.html'
+    }
+});
+
+joomlaapp.directive('contactHeader', function(){
+    return {
+        restrict    : 'E',
+        replace     : 'true',
+        scope       : 'false',
+        templateUrl : 'template_directive/_contactHeader.html'
+    }
+});

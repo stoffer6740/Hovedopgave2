@@ -1,12 +1,16 @@
-<div class="header">
-    <h2>Users</h2>
-</div>
+<div ng-controller="GetUsersCtrl">
+<app-header></app-header>
 
-<div class="list">
-    <div ng-controller="GetUsersCtrl">
-        <div ng-repeat="r in result">
-            <p>{{r.id}}</p>
-            <p>{{r.email}}</p>
+    <div class="list">
+        <div>
+
+            <!--<div>{{result}}</div>-->
+            <div ng-repeat="r in result">
+                <p>{{r.id}}  |  {{r.email}}</p>
+            </div>
+
         </div>
     </div>
 </div>
+
+
