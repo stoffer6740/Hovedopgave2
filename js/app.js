@@ -10,6 +10,8 @@ var joomlaapp = angular.module('joomlaapp', ['onsen', 'ngSanitize',
 
 
 /* Encode sql string with JSON and URL encode for the Joomla! to be able to interpret it */
+
+
 function encode_sql (sql){
     return JSON.stringify(encodeURIComponent(sql).replace(/%20/g, '+'));
 }
@@ -29,12 +31,12 @@ function getUrlParameter(sPageURL, sParam)
     }
 }
 
-function sortById (a, b) {
-    if (a.id > b.id) {
-        return 1;
-    }
-    if (a.id < b.id) {
-        return -1;
-    }
-    return 0;
+function onDeviceReady () {
+    document.addEventListener("menubutton", menuKeyDown, true);
+}
+
+
+/* Handling Android menu button */
+function menuKeyDown() {
+    menu.toggleMenu();
 }

@@ -127,6 +127,10 @@
 }
 #one-article #pub {
   color: #aaaaaa;
+  text-align: left;
+}
+#one-article p {
+  text-align: justify;
 }
 #one-article h1 {
   margin: 10px 0 0 0;
@@ -212,4 +216,14 @@
   -webkit-box-shadow: 0 2px 5px 0 rgba(1, 1, 1, 0.5);
   box-shadow: 0 2px 5px 0 rgba(1, 1, 1, 0.5);
   width: 100%;
+}
+.navigation-bar__center {
+  width: 46%;
+  text-align: center;
+  line-height: 44px;
+  font-size: 17px;
+  font-weight: 500;
+  overflow: hidden !important;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

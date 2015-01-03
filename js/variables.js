@@ -2,7 +2,9 @@
  * Created by Christoffer on 23-10-2014.
  */
 /* URL */
-var API_URL               = '192.168.0.55/joomlaapp';
+//var API_URL               = '192.168.0.39/joomlaapp';
+var API_URL               = 'exam.c4w.dk';
+
 var API_IMG_URL           = 'http://' + API_URL + '/images';
 var API_REQUEST           = '/index.php?option=com_webitall_app&task=api.request';
 
@@ -15,16 +17,16 @@ var REGEX_IMAGE           = /(<[a-zA-z]*\ [a-zA-z]*="[a-zA-Z]{6})/g;
 var GETARTICLEBYIDSQL     = 'SELECT * FROM #__content WHERE id = ';
 
 var GET5ARTICLESCTRLSQL   = 'SELECT * FROM #__menu ' +
-                            'WHERE menutype = "app-menu" ' +
+                            'WHERE menutype = app-menu ' +
                             'AND published = 1 ' +
                             'AND component_id = 22 ' +
                             'ORDER BY id ASC ' +
                             'LIMIT ';
-
-var GETALLARTICLESSQL     = 'SELECT * FROM #__menu ' +
-                            'WHERE menutype = "app-menu" ' +
-                            'AND published = 1 ' +
-                            'AND component_id = 22';
+var GETALLARTICLESSQL = "SELECT * FROM #__menu WHERE menutype = 'app-menu' AND published = 1 AND component_id = 22";
+//var GETALLARTICLESSQL     = '"SELECT * FROM #__menu ' +
+//                            "WHERE menutype = 'app-menu' " +
+//                            'AND published = 1 ' +
+//                            'AND component_id = 22"';
 
 //var GETALLARTICLESSQL = 'SELECT title, id, link FROM app_menu ' +
 //                        'WHERE menutype = "app-menu"';

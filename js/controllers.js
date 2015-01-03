@@ -78,13 +78,20 @@ joomlaapp.controller('GetArticlesCtrl', ['getArticleByIdSrvc', '$scope', '$http'
 
         //$scope.getResults = function (num) {
             var encSql = encode_sql(GETALLARTICLESSQL);
+            console.log(encSql);
             $http({url      : 'http://' + API_URL + API_REQUEST,
                    method   : 'GET',
                    params   : {'sql':encSql}
             })
                 .success(function(data, status, headers, config){
                     var unsorted = [];
+                    $scope.result = [];
                     $scope.images = [];
+                    console.log("");
+                    console.log(data.result);
+                    console.log("");
+                    console.log(data.result[0]);
+                    //$scope.result = data.result;
                     angular.forEach(data.result, function (value) {
                         var url     = value.link.replace(REGEX_LINK, "");
                         var option  = getUrlParameter(url, 'option');
@@ -109,13 +116,15 @@ function getArticleFromMenu ($scope, $http, id, unsorted) {
         params: {'sql':encSql}
     })
         .success(function(data, status, headers, config){
-            var img = 'http://' + API_URL + '/' + JSON.parse(data.result[0].images).image_intro;
-            if(!JSON.parse(data.result[0].images).image_intro) {
+
+            //if(!JSON.parse(data.result[0].images).image_intro) {
+            if(data.result[0].images == "") {
                 $scope.images.push({
                     'id'     : id,
                     'image'  : ""
                 });
             }else {
+                var img = 'http://' + API_URL + '/' + JSON.parse(data.result[0].images).image_intro;
                 $scope.images.push({
                     'id'     : id,
                     'image'  : img
@@ -157,13 +166,13 @@ joomlaapp.controller('GetOneArticleCtrl', ['getArticleByIdSrvc', '$scope', '$htt
             $scope.date = new Date(data.result[0].publish_up);
             $scope.introtext = data.result[0].introtext.replace(/images/g, API_IMG_URL);
 
-            var img = 'http://' + API_URL + '/' + JSON.parse(data.result[0].images).image_intro;
-            if(!JSON.parse(data.result[0].images).image_intro) {
+            if(data.result[0].images == "") {
                 $scope.images.push({
                     'id'     : aid,
                     'image'  : ""
                 });
             }else {
+                var img = 'http://' + API_URL + '/' + JSON.parse(data.result[0].images).image_intro;
                 $scope.images.push({
                     'id'     : aid,
                     'image'  : img
@@ -200,6 +209,7 @@ joomlaapp.controller('GetContactsCtrl', ['getContactByIdSrvc', '$http', '$scope'
 
         })
         .finally(function(){
+
         });
 }]);
 

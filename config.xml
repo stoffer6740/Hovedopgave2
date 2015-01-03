@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="dk.cbjerregaard.joomlaapp"
+<widget
+        id="dk.cbjerregaard.joomlaapp"
         version="0.0.1"
         xmlns="http://www.w3.org/ns/widgets"
         xmlns:cdv="http://cordova.apache.org/ns/1.0">
@@ -13,7 +14,9 @@
         Christoffer Bjerregaard
     </author>
 
+    <preference name="permissions" value="none"/>
+
     <content src="index.html" />
 
-    <access origin="http://192.168.0.55/*" subdomains="true"/>
+    <access origin="*" subdomains="true"/>
 </widget>
