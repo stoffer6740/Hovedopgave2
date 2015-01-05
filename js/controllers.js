@@ -76,9 +76,7 @@ joomlaapp.controller('GetArticlesCtrl', ['getArticleByIdSrvc', '$scope', '$http'
             navigation.pushPage('template_view/_viewArticle.html', {animation: 'slide'});
         };
 
-        //$scope.getResults = function (num) {
             var encSql = encode_sql(GETALLARTICLESSQL);
-            console.log(encSql);
             $http({url      : 'http://' + API_URL + API_REQUEST,
                    method   : 'GET',
                    params   : {'sql':encSql}
@@ -87,11 +85,6 @@ joomlaapp.controller('GetArticlesCtrl', ['getArticleByIdSrvc', '$scope', '$http'
                     var unsorted = [];
                     $scope.result = [];
                     $scope.images = [];
-                    console.log("");
-                    console.log(data.result);
-                    console.log("");
-                    console.log(data.result[0]);
-                    //$scope.result = data.result;
                     angular.forEach(data.result, function (value) {
                         var url     = value.link.replace(REGEX_LINK, "");
                         var option  = getUrlParameter(url, 'option');
@@ -99,6 +92,7 @@ joomlaapp.controller('GetArticlesCtrl', ['getArticleByIdSrvc', '$scope', '$http'
 
                         getArticleFromMenu($scope, $http, id, unsorted);
                     });
+
                 })
                 .error(function(data, status, headers, config) {
 
@@ -106,7 +100,6 @@ joomlaapp.controller('GetArticlesCtrl', ['getArticleByIdSrvc', '$scope', '$http'
                 .finally(function(){
 
                 });
-        //}
 }]);
 
 function getArticleFromMenu ($scope, $http, id, unsorted) {
@@ -117,11 +110,9 @@ function getArticleFromMenu ($scope, $http, id, unsorted) {
     })
         .success(function(data, status, headers, config){
 
-            //if(!JSON.parse(data.result[0].images).image_intro) {
             if(data.result[0].images == "") {
                 $scope.images.push({
-                    'id'     : id,
-                    'image'  : ""
+                    'id'     : id
                 });
             }else {
                 var img = 'http://' + API_URL + '/' + JSON.parse(data.result[0].images).image_intro;
@@ -132,16 +123,17 @@ function getArticleFromMenu ($scope, $http, id, unsorted) {
             }
 
             unsorted.push(data.result[0]);
-            unsorted.sort(function(a, b) {
-                if (a.id > b.id) {
-                    return 1;
-                }
-                if (a.id < b.id) {
+            unsorted.sort(function(art1, art2) {
+                if (art1.id > art2.id) {
                     return -1;
+                }
+                if (art1.id < art2.id) {
+                    return 1;
                 }
                 return 0;
             });
             $scope.result = unsorted;
+
         })
         .error(function(data, status, headers, config) {
 
@@ -151,8 +143,9 @@ function getArticleFromMenu ($scope, $http, id, unsorted) {
         });
 }
 
+
+
 joomlaapp.controller('GetOneArticleCtrl', ['getArticleByIdSrvc', '$scope', '$http', function(getArticlebyIdSrvc, $scope, $http){
-    console.log("Get one");
     var aid = getArticlebyIdSrvc.getId();
     var encSql = encode_sql(GETARTICLEBYIDSQL + aid);
     $http({url: 'http://' + API_URL + API_REQUEST,
@@ -162,16 +155,17 @@ joomlaapp.controller('GetOneArticleCtrl', ['getArticleByIdSrvc', '$scope', '$htt
         .success(function(data, status, headers, config){
             $scope.result = data.result;
             $scope.images = [];
-            /* Date and images (if not from external servers) */
+
             $scope.date = new Date(data.result[0].publish_up);
             $scope.introtext = data.result[0].introtext.replace(/images/g, API_IMG_URL);
 
-            if(data.result[0].images == "") {
+            if(JSON.parse(data.result[0].images).image_intro == "") {
+                console.log("no img");
                 $scope.images.push({
-                    'id'     : aid,
-                    'image'  : ""
+                    'id'     : aid
                 });
             }else {
+                console.log("img");
                 var img = 'http://' + API_URL + '/' + JSON.parse(data.result[0].images).image_intro;
                 $scope.images.push({
                     'id'     : aid,
@@ -213,7 +207,7 @@ joomlaapp.controller('GetContactsCtrl', ['getContactByIdSrvc', '$http', '$scope'
         });
 }]);
 
-joomlaapp.controller('GetOneContactCtrl', ['getContactByIdSrvc', '$http', '$scope', function(getContactByIdSrvc, $http, $scope){
+joomlaapp.controller('GetOneContactCtrl', ['getContactByIdSrvc', 'getWebpageSrvc', '$http', '$scope', function(getContactByIdSrvc, getWebpageSrvc, $http, $scope){
     console.log("Get one");
 
     var cid = getContactByIdSrvc.getId();
@@ -223,6 +217,12 @@ joomlaapp.controller('GetOneContactCtrl', ['getContactByIdSrvc', '$http', '$scop
         params: {'sql':encSql}
     })
         .success(function(data, status, headers, config){
+
+            $scope.openExternalBrowser = function(webpage) {
+                getWebpageSrvc.setWebpage(webpage);
+                openExternalBrowser(webpage);
+            };
+
             $scope.result = data.result;
             $scope.images = [];
             $scope.pageTitle = data.result[0].name;

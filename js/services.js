@@ -49,3 +49,16 @@ joomlaapp.service('getContactByIdSrvc', function() {
        }
     }
 });
+
+joomlaapp.service('getWebpageSrvc', function(){
+    var webpage;
+
+    return {
+        getWebpage: function() {
+            return webpage;
+        },
+        setWebpage: function(newWebpage) {
+            webpage = newWebpage
+        }
+    }
+});

@@ -31,6 +31,16 @@ function getUrlParameter(sPageURL, sParam)
     }
 }
 
+/* Opens link in external browser via "inAppBrowserPlugin */
+/* If the link is not prefixed with http://, it will be added */
+function openExternalBrowser(webpage) {
+    if (!webpage.match(/^[a-zA-Z]+:\/\//))
+    {
+        webpage = 'http://' + webpage;
+    }
+    window.open(encodeURI(webpage), '_system', 'location=yes');
+}
+
 function onDeviceReady () {
     document.addEventListener("menubutton", menuKeyDown, true);
 }

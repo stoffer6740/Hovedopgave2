@@ -30,14 +30,15 @@
             Contact
         </li>
 
-
-        <ons-list-item ng-hide="!r.webpage" class="list-item-container" modifier="chevron">
+        <a ng-hide="!r.webpage" class="link_style" ng-click="openExternalBrowserCtrl(r.webpage)">
+        <ons-list-item  class="list-item-container" modifier="chevron">
             <ons-row>
                 <ons-col>
                     {{r.webpage}}
                 </ons-col>
             </ons-row>
         </ons-list-item>
+        </a>
 
         <a href="mailto:{{r.email_to}}" class="link_style">
         <ons-list-item ng-hide="!r.email_to" class="list_link" modifier="chevron">

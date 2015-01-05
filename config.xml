@@ -15,6 +15,7 @@
     </author>
 
     <preference name="permissions" value="none"/>
+    <gap:plugin name="org.li8.inappbrowser" version="0.1" />
 
     <content src="index.html" />
 

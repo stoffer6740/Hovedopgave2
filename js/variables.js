@@ -16,20 +16,9 @@ var REGEX_IMAGE           = /(<[a-zA-z]*\ [a-zA-z]*="[a-zA-Z]{6})/g;
 /* SQL */
 var GETARTICLEBYIDSQL     = 'SELECT * FROM #__content WHERE id = ';
 
-var GET5ARTICLESCTRLSQL   = 'SELECT * FROM #__menu ' +
-                            'WHERE menutype = app-menu ' +
-                            'AND published = 1 ' +
-                            'AND component_id = 22 ' +
-                            'ORDER BY id ASC ' +
-                            'LIMIT ';
-var GETALLARTICLESSQL = "SELECT * FROM #__menu WHERE menutype = 'app-menu' AND published = 1 AND component_id = 22";
-//var GETALLARTICLESSQL     = '"SELECT * FROM #__menu ' +
-//                            "WHERE menutype = 'app-menu' " +
-//                            'AND published = 1 ' +
-//                            'AND component_id = 22"';
 
-//var GETALLARTICLESSQL = 'SELECT title, id, link FROM app_menu ' +
-//                        'WHERE menutype = "app-menu"';
+var GETALLARTICLESSQL     = "SELECT * FROM #__menu WHERE menutype = 'app-menu' AND published = 1 AND component_id = 22";
+
 
 var GETUSERSCTRLSQL       = 'SELECT * FROM #__users';
 
