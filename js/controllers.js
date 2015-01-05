@@ -218,7 +218,7 @@ joomlaapp.controller('GetOneContactCtrl', ['getContactByIdSrvc', 'getWebpageSrvc
     })
         .success(function(data, status, headers, config){
 
-            $scope.openExternalBrowser = function(webpage) {
+            $scope.openExternalBrowserCtrl = function(webpage) {
                 getWebpageSrvc.setWebpage(webpage);
                 openExternalBrowser(webpage);
             };
