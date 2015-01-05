@@ -3,7 +3,8 @@
         id="dk.cbjerregaard.joomlaapp"
         version="0.0.1"
         xmlns="http://www.w3.org/ns/widgets"
-        xmlns:cdv="http://cordova.apache.org/ns/1.0">
+        xmlns:cdv="http://cordova.apache.org/ns/1.0"
+        xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Joomlaapp</name>
 
     <description>
@@ -13,7 +14,10 @@
     <author email="cbj@c-bjerregaard.dk" href="http://www.c-bjerregaard.dk">
         Christoffer Bjerregaard
     </author>
+    <gap:platform name="ios" />
+    <gap:platform name="android" />
 
+    <preference name="DisallowOverscroll" value="true" />
     <preference name="permissions" value="none"/>
     <gap:plugin name="org.li8.inappbrowser" version="0.1" />
 
